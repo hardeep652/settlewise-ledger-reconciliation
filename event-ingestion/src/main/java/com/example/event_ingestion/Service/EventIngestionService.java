@@ -13,4 +13,5 @@ public class EventIngestionService {
         // or performing any necessary transformations before further processing.
         System.out.println("Processing event: " + event);
     }
+    
 }

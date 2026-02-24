@@ -9,8 +9,9 @@ public class IncomingPaymentEvent {
 
     private String eventId;
     private String transactionId;
+    private String walletId;
     private BigDecimal amount;
     private String currency;
-    private String status;
+    private String walletStatus;
     private Instant createdAt;
 }

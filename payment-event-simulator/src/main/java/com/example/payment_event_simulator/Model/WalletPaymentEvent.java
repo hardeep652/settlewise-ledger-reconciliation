@@ -21,6 +21,7 @@ public class WalletPaymentEvent {
     private BigDecimal amount;
     private String currency;
     private String walletStatus;       // DEBITED, FAILED
-    private Instant createdAt;         // Wallet event creation time
+    private Instant createdAt;   
+          // Wallet event creation time
 }
 
