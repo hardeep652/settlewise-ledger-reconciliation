@@ -1,17 +1,14 @@
 package com.example.event_ingestion.DTO;
+
 import java.math.BigDecimal;
 import java.time.Instant;
 
-import lombok.Data;
+public interface IncomingPaymentEvent {
 
-@Data
-public class IncomingPaymentEvent {
+    String getEventId();
+    String getTransactionId();
 
-    private String eventId;
-    private String transactionId;
-    private String walletId;
-    private BigDecimal amount;
-    private String currency;
-    private String walletStatus;
-    private Instant createdAt;
+    BigDecimal getAmount();   // normalized
+    String getStatus();       // normalized
+    Instant getEventTime();   // normalized
 }
