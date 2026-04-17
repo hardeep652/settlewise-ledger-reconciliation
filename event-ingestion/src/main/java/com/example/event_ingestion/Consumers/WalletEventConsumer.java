@@ -5,6 +5,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import com.example.event_ingestion.DTO.WalletIncomingPaymentEvent;
+import com.example.event_ingestion.Model.EventSource;
 import com.example.event_ingestion.Service.EventIngestionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -26,7 +27,7 @@ public class WalletEventConsumer {
             System.out.println("Received message: " + message);
 
             WalletIncomingPaymentEvent event = objectMapper.readValue(message, WalletIncomingPaymentEvent.class);
-            eventIngestionService.processEvent(event);
+            eventIngestionService.processEvent(event,EventSource.WALLET);
         } catch (Exception e) {
             e.printStackTrace();
         }
