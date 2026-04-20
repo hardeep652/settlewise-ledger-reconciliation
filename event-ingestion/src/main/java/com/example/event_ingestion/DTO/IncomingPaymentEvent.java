@@ -11,4 +11,5 @@ public interface IncomingPaymentEvent {
     BigDecimal getAmount();   // normalized
     String getStatus();       // normalized
     Instant getEventTime();   // normalized
+    String getCurrency();
 }
