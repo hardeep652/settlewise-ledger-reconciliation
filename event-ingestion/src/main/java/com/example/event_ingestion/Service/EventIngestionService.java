@@ -12,6 +12,7 @@ import com.example.event_ingestion.Model.EventSource;
 import com.example.event_ingestion.Model.PaymentStatus;
 import com.example.event_ingestion.Model.RawEvent;
 import com.example.event_ingestion.Model.RawEventStatus;
+import com.example.event_ingestion.Producer.CanonicalEventProducer;
 import com.example.event_ingestion.Repository.CanonicalPaymentEventRepository;
 import com.example.event_ingestion.Repository.RawEventRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,6 +20,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class EventIngestionService {
+
+    @Autowired
+    private CanonicalEventProducer canonicalEventProducer;
 
     @Autowired
     private CanonicalPaymentEventRepository canonicalPaymentEventRepository;
@@ -82,6 +86,7 @@ public class EventIngestionService {
             System.out.println("Canonical event created: " + canonicalEvent);
 
             canonicalPaymentEventRepository.save(canonicalEvent);
+            canonicalEventProducer.publish(canonicalEvent);
 
             if (rawEvent != null) {
                 rawEvent.setStatus(RawEventStatus.PROCESSED);
