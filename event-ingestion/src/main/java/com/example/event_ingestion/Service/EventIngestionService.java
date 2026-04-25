@@ -17,8 +17,6 @@ import com.example.event_ingestion.Repository.RawEventRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import jakarta.transaction.Transactional;
-
 @Service
 public class EventIngestionService {
 
@@ -31,7 +29,6 @@ public class EventIngestionService {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Transactional
     public void processEvent(IncomingPaymentEvent event, EventSource source) {
 
         // ✅ Basic validation
@@ -39,7 +36,7 @@ public class EventIngestionService {
             event.getTransactionId() == null || event.getTransactionId().isBlank()) {
 
             throw new RuntimeException("Invalid event: missing required fields");
-        }
+            }
 
         RawEvent rawEvent = null;
 
